@@ -203,11 +203,11 @@ body::after{
   position:relative;
   transform: rotate(-1.2deg) translateY(0) scale(1);
   transition:
-    transform .3s cubic-bezier(.34,1.56,.64,1),
-    background .25s,
-    color .25s,
-    box-shadow .3s cubic-bezier(.34,1.56,.64,1),
-    border-color .25s;
+    transform .4s cubic-bezier(.34,1.56,.64,1),
+    background .3s ease,
+    color .3s ease,
+    box-shadow .4s cubic-bezier(.34,1.56,.64,1),
+    border-color .3s ease;
   animation: btnPop .55s cubic-bezier(.34,1.56,.64,1) .65s backwards;
 }
 @keyframes btnPop{
@@ -232,7 +232,7 @@ body::after{
 .dl-btn:active{
   transform: rotate(0deg) translateY(0) scale(.96);
   box-shadow: 1px 1px 0 var(--line-strong) !important;
-  transition-duration: .08s;
+  transition-duration: .1s;
 }
 
 .dl-btn .tag{font-size:.75rem;opacity:.7;font-weight:500;margin-inline-start:4px}
@@ -261,7 +261,7 @@ body::after{
   padding:22px 20px 20px 44px;
   position:relative;
   box-shadow:6px 6px 0 var(--shadow);
-  transition: transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s;
+  transition: transform .4s cubic-bezier(.34,1.56,.64,1), box-shadow .4s cubic-bezier(.34,1.56,.64,1);
 }
 .sketch:hover{
   transform: translateY(-4px) rotate(-.4deg);
@@ -381,8 +381,8 @@ section + section{border-top:1px solid var(--line)}
 .js-reveal .specs-list{
   opacity:0;transform:translateY(24px) rotate(-.5deg);
   transition:
-    opacity .7s cubic-bezier(.34,1.56,.64,1),
-    transform .7s cubic-bezier(.34,1.56,.64,1);
+    opacity .8s cubic-bezier(.34,1.56,.64,1),
+    transform .8s cubic-bezier(.34,1.56,.64,1);
 }
 .js-reveal .chapter.in-view,
 .js-reveal .chapter-sub.in-view,
@@ -406,10 +406,10 @@ section + section{border-top:1px solid var(--line)}
   padding:20px 0;border-bottom:1px dashed var(--line-strong);
   align-items:flex-start;
   cursor:default;
-  transition: padding .3s cubic-bezier(.34,1.56,.64,1);
+  transition: padding .4s cubic-bezier(.34,1.56,.64,1), background-color .3s ease;
 }
 .fig:last-child{border-bottom:0}
-.fig:hover{ padding-inline-start: 8px; }
+.fig:hover{ padding-inline-start: 8px; background-color: var(--surface-2); }
 .fig:active{ opacity: .85; }
 
 /* fig-num — hover و click پایدار */
@@ -420,7 +420,7 @@ section + section{border-top:1px solid var(--line)}
   flex-shrink:0;
   --base-rot: 0deg;
   transform: rotate(var(--base-rot)) scale(1);
-  transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+  transition: transform .4s cubic-bezier(.34,1.56,.64,1), background-color .3s ease;
 }
 :where(.fig:nth-child(1)) .fig-num{--base-rot: -3deg; border-color:var(--green); color:var(--green);}
 :where(.fig:nth-child(2)) .fig-num{--base-rot: 2deg;  border-color:var(--red);   color:var(--red);}
@@ -430,10 +430,11 @@ section + section{border-top:1px solid var(--line)}
 
 .fig:hover .fig-num{
   transform: rotate(calc(var(--base-rot) - 8deg)) scale(1.14);
+  background-color: var(--bg);
 }
 .fig:active .fig-num{
   transform: rotate(var(--base-rot)) scale(.94);
-  transition-duration: .1s;
+  transition-duration: .15s;
 }
 
 .fig-body h3{
@@ -458,9 +459,10 @@ section + section{border-top:1px solid var(--line)}
   display:flex;flex-direction:column;
   translate: 0 0; rotate: 0deg;
   transition:
-    translate .35s cubic-bezier(.34,1.56,.64,1),
-    rotate .35s cubic-bezier(.34,1.56,.64,1),
-    box-shadow .35s cubic-bezier(.34,1.56,.64,1);
+    translate .4s cubic-bezier(.34,1.56,.64,1),
+    rotate .4s cubic-bezier(.34,1.56,.64,1),
+    box-shadow .4s cubic-bezier(.34,1.56,.64,1),
+    border-color .3s ease;
 }
 .recipe-col:hover{
   translate: 0 -5px; rotate: .5deg;
@@ -469,7 +471,7 @@ section + section{border-top:1px solid var(--line)}
 .recipe-col:active{
   translate: 0 -1px; rotate: 0deg;
   box-shadow: 2px 2px 0 var(--shadow);
-  transition-duration: .1s;
+  transition-duration: .15s;
 }
 .recipe-col.win{border-color:var(--blue)}
 .recipe-col.and{border-color:var(--green)}
@@ -491,7 +493,7 @@ section + section{border-top:1px solid var(--line)}
   font-size:.88rem;color:var(--ink);line-height:1.75;
   flex:1;
   transform: scale(1);
-  transition: transform .3s cubic-bezier(.34,1.56,.64,1), border-color .25s;
+  transition: transform .4s cubic-bezier(.34,1.56,.64,1), border-color .3s ease;
 }
 .warning-box:hover{
   border-color: color-mix(in srgb,var(--red) 60%,var(--line-strong));
@@ -499,7 +501,7 @@ section + section{border-top:1px solid var(--line)}
 }
 .warning-box:active{
   transform: scale(.985);
-  transition-duration: .1s;
+  transition-duration: .15s;
 }
 .warning-box .warn-label{
   display:inline-flex;align-items:center;gap:6px;
@@ -527,7 +529,7 @@ section + section{border-top:1px solid var(--line)}
   background:var(--surface);border:2px solid var(--ink);
   border-radius:4px;padding:8px 0;
   box-shadow:5px 5px 0 var(--shadow);
-  transition: box-shadow .3s;
+  transition: box-shadow .4s cubic-bezier(.34,1.56,.64,1);
 }
 .specs-list:hover{ box-shadow:7px 7px 0 var(--shadow); }
 
@@ -536,15 +538,15 @@ section + section{border-top:1px solid var(--line)}
   padding:12px 22px;border-bottom:1px dashed var(--line-strong);
   align-items:baseline;
   cursor:default;
-  transition: padding .25s cubic-bezier(.34,1.56,.64,1), background .2s;
+  transition: padding .3s cubic-bezier(.34,1.56,.64,1), background-color .3s ease;
 }
 .spec-row:hover{
   padding-inline-start:30px;
-  background:color-mix(in srgb,var(--highlight) 22%,transparent);
+  background-color:color-mix(in srgb,var(--highlight) 25%,transparent);
 }
 .spec-row:active{
-  background:color-mix(in srgb,var(--highlight) 45%,transparent);
-  transition-duration: .08s;
+  background-color:color-mix(in srgb,var(--highlight) 45%,transparent);
+  transition-duration: .1s;
 }
 .spec-row:last-child{border-bottom:0}
 .spec-row .k{font-weight:600;color:var(--ink-mut);font-size:.92rem}
@@ -613,9 +615,9 @@ section + section{border-top:1px solid var(--line)}
   .stamp-free{font-size:.78rem;padding:5px 12px}
   .cover-text::before{width:90px;height:90px;top:-30px;left:-20px}
   /* hover effects کوچیک‌تر روی موبایل */
-  .fig:hover{ padding-inline-start:0; }
-  .fig:hover .fig-num{ transform: rotate(var(--base-rot)) scale(1); }
-  .spec-row:hover{ padding-inline-start:16px; background:transparent; }
+  .fig:hover{ padding-inline-start:0; background-color: transparent; }
+  .fig:hover .fig-num{ transform: rotate(var(--base-rot)) scale(1); background-color: var(--surface); }
+  .spec-row:hover{ padding-inline-start:16px; background-color: transparent; }
   .recipe-col:hover{ translate: 0 0; rotate: 0deg; box-shadow: 4px 4px 0 var(--shadow); }
   .warning-box:hover{ transform: scale(1); }
   /* فعال کردن حالت press برای تاچ */
@@ -670,7 +672,7 @@ section + section{border-top:1px solid var(--line)}
         </p>
         <div class="dl-row">
           <a class="dl-btn win" id="dlWin" href="#">
-            برای ویندوز <span class="tag">.exe</span>
+            برای ویندوز <span class="tag">.msix</span>
           </a>
           <a class="dl-btn and" id="dlAnd" href="#">
             برای اندروید <span class="tag">.apk</span>
@@ -805,9 +807,10 @@ section + section{border-top:1px solid var(--line)}
 (function(){
 'use strict';
 
+// لینک‌های دانلود با استفاده از latest
 const base = 'https://github.com/AtbeenLabs/MathLab';
-document.getElementById('dlWin').href = base + '/releases/download/exe/AtbinYar.msix';
-document.getElementById('dlAnd').href = base + '/releases/download/exe/AtbinYar.apk';
+document.getElementById('dlWin').href = base + '/releases/latest/download/AtbinYar.msix';
+document.getElementById('dlAnd').href = base + '/releases/latest/download/AtbinYar.apk';
 
 /* ========== THEME ========== */
 const rootEl = document.documentElement;
