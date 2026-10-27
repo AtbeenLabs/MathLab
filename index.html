@@ -37,7 +37,7 @@
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--line-strong) transparent}
 ::-webkit-scrollbar{width:8px}
-::-webkit-scrollbar-thu{background:var(--line-strong);border-radius:8px}
+::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:8px}
 ::-webkit-scrollbar-track{background:transparent}
 
 body{
@@ -92,7 +92,7 @@ body::after{
   display: inline-block;
 }
 
-.np-syol{
+.np-symbol{
   font-size:1.8rem;font-weight:900;line-height:1;color:var(--red);font-family:serif;
   display:none;animation:symbolWiggle 3s ease-in-out infinite;
 }
@@ -790,12 +790,14 @@ section + section{border-top:1px solid var(--line)}
 (function(){
 'use strict';
 
-// لینک‌های دانلود
+// لینک‌های دانلود (نام فایل‌ها دقیقاً مطابق پوشه dist تنظیم شد)
 const base = 'https://github.com/AtbeenLabs/MathLab/releases/latest/download';
-document.getElementById('dlWin').href = base + '/AtbinYar-Setup-1.0.0.exe'; 
-document.getElementById('dlAnd').href = base + '/AtbinYar.apk';
-document.getElementById('dlDeb').href = base + '/atbinyar-mathlab_1.0.0_amd64.deb';
-document.getElementById('dlAppImage').href = base + '/AtbinYar-1.0.0.AppImage';
+// اگر می‌خواهی لوکال تست کنی، خط بالا را پاک کن و این را بگذار: const base = '.';
+
+document.getElementById('dlWin').href = base + '/AtbinYar Setup 1.0.0.exe'; 
+document.getElementById('dlAnd').href = base + '/AtbinYar_v1.0.0.apk';
+document.getElementById('dlDeb').href = base + '/AtbinYar_v1.0.0.deb';
+document.getElementById('dlAppImage').href = base + '/AtbinYar_v1.0.0.AppImage';
 
 // باز و بسته کردن منوی کشویی لینوکس
 const linuxToggle = document.getElementById('linuxToggle');
