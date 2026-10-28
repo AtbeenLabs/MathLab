@@ -141,8 +141,9 @@ body::after{
 }
 @keyframes coffeeAppear{ 0%{opacity:0;transform:scale(.6);} 60%{opacity:1;transform:scale(1.05);} 100%{opacity:1;transform:scale(1);} }
 
+.badge-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
 .stamp-free{
-  display:inline-block;padding:6px 16px;margin-bottom:16px;
+  display:inline-block;padding:6px 16px;
   border:2px dashed var(--red);border-radius:6px;
   color:var(--red);font-weight:900;font-size:.85rem;letter-spacing:.15em;
   position:relative;text-transform:uppercase;
@@ -152,6 +153,16 @@ body::after{
 .stamp-free:hover{ transform:scale(1.06) rotate(-6deg); }
 @keyframes stampIn{ 0%{opacity:0;transform:scale(2.5) rotate(-20deg);} 60%{opacity:1;transform:scale(.92) rotate(-2deg);} 100%{opacity:1;transform:scale(1) rotate(-3deg);} }
 .stamp-free::before{ content:'';position:absolute;inset:3px;border-radius:3px;border:1px solid var(--red);opacity:.4; }
+
+.capacity-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--surface-2); border: 1.5px solid var(--red);
+  color: var(--red); padding: 6px 14px; border-radius: 8px;
+  font-weight: 800; font-size: 0.9rem;
+  animation: fadeUp .8s cubic-bezier(.34,1.56,.64,1) .35s both;
+  box-shadow: 2px 2px 0 var(--shadow);
+  transform: rotate(1deg);
+}
 
 .cover h1{
   font-size:clamp(1.4rem,5.2vw,3.2rem);font-weight:900;line-height:1.2;
@@ -547,6 +558,8 @@ section + section{border-top:1px solid var(--line)}
 [data-view="mobile"] .linux-opt { max-width: 100%; }
 [data-view="mobile"] .meta-line { justify-content: center; }
 
+[data-view="mobile"] .badge-row { justify-content: center; }
+
 [data-view="mobile"] .sketch-wrap { margin: 0 auto; max-width: 320px; transform: rotate(-1deg); }
 [data-view="mobile"] .sketch { padding: 18px 16px 16px 32px; }
 [data-view="mobile"] .sketch-annot.a1 { right: -20px; top: 20%; }
@@ -617,7 +630,13 @@ section + section{border-top:1px solid var(--line)}
   <section class="cover">
     <div class="cover-grid">
       <div class="cover-text">
-        <span class="stamp-free">رایگان</span>
+        
+        <!-- نشان‌های افتخار -->
+        <div class="badge-row">
+          <span class="stamp-free" style="margin-bottom: 0;">رایگان</span>
+          <span class="capacity-badge">⚡ پردازش تا ۱۰۰ تریلیون</span>
+        </div>
+        
         <h1>پشت هر عدد، یک <em>دنیا</em>ست.</h1>
         <p class="cover-lead">
           یک آزمایشگاه کامل ریاضی — غربال، تجزیه، شمارنده، ب.م.م، ک.م.م و تحلیل عدد.
@@ -702,7 +721,7 @@ section + section{border-top:1px solid var(--line)}
         <div class="fig-num">۰۲</div>
         <div class="fig-body">
           <h3>تجزیه به عامل‌های اول</h3>
-          <p>درخت تجزیه با شاخه‌های رنگی یا ستون نردبانی. با الگوریتم Pollard's rho تا <code>10¹⁵</code>. مثلاً <code>360 = 2³ × 3² × 5</code>.</p>
+          <p>درخت تجزیه با شاخه‌های رنگی یا ستون نردبانی. با الگوریتم Pollard's rho تا <code>10¹⁴</code>. مثلاً <code>360 = 2³ × 3² × 5</code>.</p>
         </div>
       </div>
       <div class="fig">
@@ -770,7 +789,7 @@ section + section{border-top:1px solid var(--line)}
     <div class="specs-list">
       <div class="spec-row"><span class="k">سیستم‌عامل ویندوز</span><span class="v">Windows 10 / 11</span></div>
       <div class="spec-row"><span class="k">سیستم‌عامل اندروید</span><span class="v">Android 7+</span></div>
-      <div class="spec-row"><span class="k">حداکثر عدد قابل پردازش</span><span class="v">10¹⁵</span></div>
+      <div class="spec-row"><span class="k">حداکثر عدد قابل پردازش</span><span class="v">۱۰۰ تریلیون (10¹⁴)</span></div>
       <div class="spec-row"><span class="k">حجم تقریبی</span><span class="v">~ 10 MB</span></div>
       <div class="spec-row"><span class="k">نیاز به اینترنت</span><span class="v">خیر</span></div>
       <div class="spec-row"><span class="k">قیمت</span><span class="v">رایگان</span></div>
@@ -790,10 +809,8 @@ section + section{border-top:1px solid var(--line)}
 (function(){
 'use strict';
 
-// لینک‌های دانلود (نام فایل‌ها دقیقاً مطابق پوشه dist تنظیم شد)
+// لینک‌های دانلود
 const base = 'https://github.com/AtbeenLabs/MathLab/releases/latest/download';
-// اگر می‌خواهی لوکال تست کنی، خط بالا را پاک کن و این را بگذار: const base = '.';
-
 document.getElementById('dlWin').href = base + '/AtbinYar_v1.0.0.exe'; 
 document.getElementById('dlAnd').href = base + '/AtbinYar_v1.0.0.apk';
 document.getElementById('dlDeb').href = base + '/AtbinYar_v1.0.0.deb';
