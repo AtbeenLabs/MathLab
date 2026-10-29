@@ -1,13 +1,16 @@
-OK page metadata/schema/links: 404.html
-OK page metadata/schema/links: about.html
-OK page metadata/schema/links: divisors.html
-OK page metadata/schema/links: gcd-lcm.html
-OK page metadata/schema/links: index.html
-OK page metadata/schema/links: number-analysis.html
-OK page metadata/schema/links: prime-factorization.html
-OK page metadata/schema/links: prime-numbers.html
-OK sitemap XML: 7 URLs
-OK robots policy + sitemap reference
-OK llms.txt, .nojekyll, and custom-domain CNAME
-OK social image 1200x630
-OK inline JavaScript syntax: 7 scripts
+گزارش بررسی محلی بسته AtbinYar SEO + GEO
+
+موارد تأییدشده:
+- صفحات HTML، پیوندهای داخلی و فایل‌های همراه بسته بررسی شدند؛ پیوندهای آموزشی به صفحات موجود اشاره می‌کنند. `logo.png` عمداً در بسته نیست و باید فایل لوگوی فعلی مخزن حفظ شود.
+- JSON-LD موجود در صفحه‌ها از نظر معتبر بودن JSON بررسی شد.
+- نحو اسکریپت‌های JavaScript در HTMLها بررسی شد.
+- Sitemap شامل ۷ URL موجود در بسته است و 404.html در Sitemap قرار ندارد.
+- robots.txt به Sitemap اشاره می‌کند؛ llms.txt، CNAME، .nojekyll و تصویر اجتماعی هم موجودند.
+- عرض صفحه در Chromium در 320، 360، 375، 390، 430 و 768 پیکسل بررسی شد؛ documentElement.scrollWidth از عرض viewport بیشتر نشد.
+- منوی دانلود لینوکس در 320 پیکسل باز شد و صفحه افقی جابه‌جا نشد.
+- متن پنج آموزش با جمله‌های ساده، مثال عددی و مراحل کوتاه برای سطح پایه هفتم و هشتم بازنویسی شد.
+
+محدودیت‌ها:
+- این گزارش، اعتبارسنجی آفلاین محلی است و جایگزین Rich Results Test، Search Console یا بررسی زنده پس از انتشار نیست.
+- ایندکس شدن، رتبه، نمایش rich result یا نمایش در پاسخ هوش مصنوعی تضمین نمی‌شود.
+- در انتهای انتشار، مسیر https://atbinyar.ir/sitemap.xml و https://atbinyar.ir/robots.txt را در مرورگر بررسی کن.

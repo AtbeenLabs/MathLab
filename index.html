@@ -775,6 +775,53 @@ section + section{border-top:1px solid var(--line)}
   [data-view="desktop"] .fig { grid-template-columns: 1fr; text-align: center; }
   [data-view="desktop"] .sketch-wrap { margin: 0 auto; max-width: 320px; }
 }
+
+/* Mobile overflow safety: keep the notebook layout but let every long label wrap. */
+html{max-width:100%;overflow-x:clip;}
+@media(max-width:480px){
+  .wrap{padding-inline:14px;min-width:0;}
+  .np-in{flex-wrap:wrap;justify-content:space-between;gap:8px;}
+  .np-brand{min-width:0;flex:1 1 100%;flex-wrap:wrap;}
+  .np-name{font-size:1.15rem;overflow-wrap:anywhere;}
+  .np-logo{max-width:112px;}
+  .view-toggle{gap:2px;padding:3px;}
+  .view-btn{padding:6px 9px;}
+  .cover-grid>*,.cover-text,.sketch-wrap,.fig,.fig-body,.recipe-col,.warning-box,.specs-list,.spec-row{min-width:0;max-width:100%;}
+  .cover h1{white-space:normal;overflow-wrap:anywhere;font-size:clamp(1.55rem,7vw,2.1rem);letter-spacing:0;line-height:1.45;}
+  .cover-lead,.chapter,.chapter-sub,.fig-body h3,.fig-body p,.spec-row,.spec-row .k,.spec-row .v{overflow-wrap:anywhere;word-break:normal;}
+  .fig-body code{max-width:100%;white-space:normal;overflow-wrap:anywhere;}
+  .dl-row,.linux-container{width:100%;min-width:0;}
+  .dl-row{align-items:stretch;}
+  .linux-container{align-items:stretch;}
+  .linux-dropdown{width:100%;min-width:0;}
+  .linux-dropdown-inner{width:100%;}
+  .dl-btn{max-width:100%;white-space:normal;overflow-wrap:anywhere;flex-wrap:wrap;}
+  #linuxToggle{width:100%;justify-content:center;}
+  .linux-dropdown,.linux-dropdown-inner,.linux-opt,.linux-opt .opt-text{min-width:0;max-width:100%;}
+  .linux-opt{white-space:normal;}
+  .linux-opt .opt-text{overflow-wrap:anywhere;}
+  .cover-grid{grid-template-columns:minmax(0,1fr);}
+  .sketch-wrap{width:100%;max-width:300px;margin-inline:auto;transform:none!important;}
+  .sketch{width:100%;max-width:100%;}
+  .stamp-free{animation:fadeUp .7s ease-out .2s both;}
+  .sketch-annot.a1{right:0;}
+  .sketch-annot.a2{left:0;}
+  .fig{grid-template-columns:1fr;}
+  .seo-feature,.seo-feature-link,.seo-content,.seo-faq,.seo-keyphrases{min-width:0;max-width:100%;overflow-wrap:anywhere;}
+  .seo-feature-link{white-space:normal;}
+  .spec-row{grid-template-columns:minmax(0,1fr);}
+  .spec-row .v{direction:ltr;unicode-bidi:isolate;text-align:right;white-space:normal;}
+}
+@media(max-width:360px){
+  .sketch-annot{display:none;}
+  .wrap{padding-inline:10px;}
+  .sketch{padding-inline:30px 12px;}
+  .sketch-annot{font-size:.82rem;}
+  .dl-btn{padding:12px 14px;font-size:.9rem;}
+  .warning-box .warn-quote{overflow-wrap:anywhere;word-break:break-word;}
+  .spec-row{padding-inline:12px;}
+}
+
 </style>
 </head>
 <body>
