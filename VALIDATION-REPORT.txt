@@ -1,0 +1,13 @@
+OK page metadata/schema/links: 404.html
+OK page metadata/schema/links: about.html
+OK page metadata/schema/links: divisors.html
+OK page metadata/schema/links: gcd-lcm.html
+OK page metadata/schema/links: index.html
+OK page metadata/schema/links: number-analysis.html
+OK page metadata/schema/links: prime-factorization.html
+OK page metadata/schema/links: prime-numbers.html
+OK sitemap XML: 7 URLs
+OK robots policy + sitemap reference
+OK llms.txt, .nojekyll, and custom-domain CNAME
+OK social image 1200x630
+OK inline JavaScript syntax: 7 scripts

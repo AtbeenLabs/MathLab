@@ -1,0 +1,13 @@
+# آتبین‌یار: اجازه کشف صفحات عمومی برای موتورهای جست‌وجو و پاسخ‌گوهای جست‌وجویی
+User-agent: *
+Allow: /
+
+# OpenAI Search crawler: allows content to be considered for ChatGPT Search
+User-agent: OAI-SearchBot
+Allow: /
+
+# GPTBot is separate from search; blocked by default to keep search inclusion separate from training use
+User-agent: GPTBot
+Disallow: /
+
+Sitemap: https://atbinyar.ir/sitemap.xml
