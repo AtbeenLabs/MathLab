@@ -88,8 +88,8 @@
       ],
       "isAccessibleForFree": true,
       "inLanguage": "fa-IR",
-      "softwareVersion": "1.0.0",
-      "downloadUrl": "https://github.com/AtbeenLabs/MathLab/releases/latest",
+      "softwareVersion": "1.13.0",
+      "downloadUrl": "https://github.com/AtbeenLabs/MathLab-App/releases/latest",
       "author": {
         "@id": "https://atbinyar.ir/#creator"
       },
@@ -870,10 +870,10 @@ html{max-width:100%;overflow-x:clip;}
         
         <!-- دکمه‌های دانلود -->
         <div class="dl-row">
-          <a class="dl-btn win" id="dlWin" href="https://github.com/AtbeenLabs/MathLab/releases/latest/download/AtbinYar_v1.0.0.exe" aria-label="دانلود آتبین‌یار برای ویندوز">
+          <a class="dl-btn win" id="dlWin" href="https://github.com/AtbeenLabs/MathLab-App/releases/latest" aria-label="دانلود آتبین‌یار برای ویندوز">
             برای ویندوز <span class="tag" dir="ltr">.exe</span>
           </a>
-          <a class="dl-btn and" id="dlAnd" href="https://github.com/AtbeenLabs/MathLab/releases/latest/download/AtbinYar_v1.0.0.apk" aria-label="دانلود آتبین‌یار برای اندروید">
+          <a class="dl-btn and" id="dlAnd" href="https://github.com/AtbeenLabs/MathLab-App/releases/latest" aria-label="دانلود آتبین‌یار برای اندروید">
             برای اندروید <span class="tag" dir="ltr">.apk</span>
           </a>
           
@@ -889,13 +889,13 @@ html{max-width:100%;overflow-x:clip;}
             <div class="linux-dropdown" id="linuxOptions">
               <div class="linux-dropdown-inner">
                 <div class="rope-wrapper"><div class="rope"></div></div>
-                <a href="https://github.com/AtbeenLabs/MathLab/releases/latest/download/AtbinYar_v1.0.0.deb" id="dlDeb" class="linux-opt" aria-label="دانلود نسخه DEB آتبین‌یار برای لینوکس">
+                <a href="https://github.com/AtbeenLabs/MathLab-App/releases/latest" id="dlDeb" class="linux-opt" aria-label="دانلود نسخه DEB آتبین‌یار برای لینوکس">
                   <span class="opt-text">نسخه اوبونتو / مینت / دبیان</span>
                   <span class="tag" dir="ltr">.deb</span>
                 </a>
                 
                 <div class="rope-wrapper"><div class="rope"></div></div>
-                <a href="https://github.com/AtbeenLabs/MathLab/releases/latest/download/AtbinYar_v1.0.0.AppImage" id="dlAppImage" class="linux-opt" aria-label="دانلود نسخه AppImage آتبین‌یار برای لینوکس">
+                <a href="https://github.com/AtbeenLabs/MathLab-App/releases/latest" id="dlAppImage" class="linux-opt" aria-label="دانلود نسخه AppImage آتبین‌یار برای لینوکس">
                   <span class="opt-text">نسخه پرتابل (همه توزیع‌ها)</span>
                   <span class="tag" dir="ltr">.AppImage</span>
                 </a>
@@ -909,6 +909,7 @@ html{max-width:100%;overflow-x:clip;}
           <span>بدون ثبت‌نام</span>
           <span>بدون اینترنت</span>
           <span>محاسبه روی دستگاه</span>
+          <span id="downloadVersion" aria-live="polite">در حال بررسی آخرین نسخه…</span>
         </div>
       </div>
 
@@ -1130,22 +1131,84 @@ html{max-width:100%;overflow-x:clip;}
   const prefersReducedMotion = () => Boolean(motionQuery.matches);
 
   /* ------------------------- Downloads ------------------------- */
-  // The asset names below match the v1.0.0 release assets on GitHub.
-  const releaseBase = 'https://github.com/AtbeenLabs/MathLab/releases/latest/download/';
-  const downloadAssets = {
-    dlWin: 'AtbinYar_v1.0.0.exe',
-    dlAnd: 'AtbinYar_v1.0.0.apk',
-    dlDeb: 'AtbinYar_v1.0.0.deb',
-    dlAppImage: 'AtbinYar_v1.0.0.AppImage'
+  // Resolve versioned filenames from the canonical app repository each time
+  // the site loads, so these buttons keep following the newest public release.
+  const releaseApi = 'https://api.github.com/repos/AtbeenLabs/MathLab-App/releases/latest';
+  const releasePage = 'https://github.com/AtbeenLabs/MathLab-App/releases/latest';
+  const downloadMatchers = {
+    dlWin: asset => /^AtbinYar\\.Setup\\.\\d+\\.\\d+\\.\\d+\\.exe$/i.test(asset.name),
+    dlAnd: asset => asset.name === 'app-release.apk',
+    dlDeb: asset => /^atbinyar_\\d+\\.\\d+\\.\\d+_amd64\\.deb$/i.test(asset.name),
+    dlAppImage: asset => /^AtbinYar-\\d+\\.\\d+\\.\\d+\\.AppImage$/i.test(asset.name)
   };
 
-  Object.entries(downloadAssets).forEach(([id, filename]) => {
-    const link = document.getElementById(id);
-    if (!link) return;
-    link.href = releaseBase + encodeURIComponent(filename);
-    link.setAttribute('rel', 'noopener');
-    link.setAttribute('data-download-file', filename);
+  const downloadLinks = Object.keys(downloadMatchers)
+    .map(id => [id, document.getElementById(id)])
+    .filter(([, link]) => link);
+
+  // A safe fallback remains available even when the GitHub API is unreachable.
+  downloadLinks.forEach(([id, link]) => {
+    link.href = releasePage;
+    link.rel = 'noopener noreferrer';
+    link.dataset.downloadState = 'release-page-fallback';
   });
+
+  async function updateLatestDownloads() {
+    const versionLabel = document.getElementById('downloadVersion');
+
+    try {
+      const response = await fetch(releaseApi, {
+        cache: 'no-store',
+        headers: {
+          Accept: 'application/vnd.github+json',
+          'X-GitHub-Api-Version': '2022-11-28'
+        }
+      });
+      if (!response.ok) {
+        throw new Error('GitHub Releases API returned HTTP ' + response.status);
+      }
+
+      const release = await response.json();
+      if (!release || release.draft || release.prerelease || !Array.isArray(release.assets)) {
+        throw new Error('The latest public release is not available.');
+      }
+
+      const missing = [];
+      for (const [id, link] of downloadLinks) {
+        const asset = release.assets.find(downloadMatchers[id]);
+        const downloadUrl = asset && asset.browser_download_url;
+        if (
+          !asset ||
+          asset.state !== 'uploaded' ||
+          typeof downloadUrl !== 'string' ||
+          !downloadUrl.startsWith('https://github.com/AtbeenLabs/MathLab-App/releases/download/')
+        ) {
+          missing.push(id);
+          continue;
+        }
+
+        link.href = downloadUrl;
+        link.dataset.downloadFile = asset.name;
+        link.dataset.downloadVersion = release.tag_name;
+        link.dataset.downloadState = 'ready';
+        link.title = 'دانلود آتبین‌یار ' + release.tag_name;
+      }
+
+      if (versionLabel) {
+        versionLabel.textContent = missing.length
+          ? 'نسخه ' + release.tag_name + ' — بعضی فایل‌ها در انتشار موجود نیستند'
+          : 'آخرین نسخه: ' + release.tag_name;
+      }
+      document.documentElement.dataset.releaseVersion = release.tag_name;
+    } catch (error) {
+      if (versionLabel) {
+        versionLabel.textContent = 'دریافت نسخه ناموفق بود؛ فهرست انتشارها را باز کن';
+      }
+      console.warn('[AtbinYar downloads] Could not resolve latest release:', error);
+    }
+  }
+
+  updateLatestDownloads();
 
   /* ------------------------- Layout view ------------------------- */
   const desktopButton = $('#btnDesktop');
