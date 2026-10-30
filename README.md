@@ -5,7 +5,7 @@
 **آتبین‌یار (AtbinYar)** یک نرم‌افزار رایگان ریاضی ساختهٔ **آتبین امیدی (Atbin Omidi)** است. این برنامه برای بررسی اعداد، پیدا کردن اعداد اول، تجزیه به عوامل اول، نمایش شمارنده‌ها و محاسبهٔ ب.م.م و ک.م.م طراحی شده است.
 
 🌐 **وب‌سایت رسمی:** https://atbinyar.ir/  
-⬇️ **دانلود آخرین نسخه:** https://github.com/AtbeenLabs/MathLab/releases/latest
+⬇️ **دانلود آخرین نسخه:** https://github.com/AtbeenLabs/MathLab-App/releases/latest
 
 ## قابلیت‌های آتبین‌یار
 
@@ -18,7 +18,7 @@
 
 ## دانلود برای سیستم‌عامل‌ها
 
-به [صفحه آخرین انتشار در GitHub](https://github.com/AtbeenLabs/MathLab/releases/latest) برو و فایل متناسب با دستگاهت را انتخاب کن.
+به [صفحه آخرین انتشار در GitHub](https://github.com/AtbeenLabs/MathLab-App/releases/latest) برو و فایل متناسب با دستگاهت را انتخاب کن.
 
 | سیستم‌عامل | نوع فایل |
 |---|---|
@@ -59,7 +59,7 @@
 ### Download
 
 - **Official website:** https://atbinyar.ir/
-- **Latest releases:** https://github.com/AtbeenLabs/MathLab/releases/latest
+- **Latest releases:** https://github.com/AtbeenLabs/MathLab-App/releases/latest
 - **Platforms:** Windows, Android, and compatible Linux distributions (`.deb` and `.AppImage`).
 
 The installed application is designed to perform mathematical calculations locally, without requiring an account or an internet connection for its calculation features.
@@ -70,4 +70,5 @@ The installed application is designed to perform mathematical calculations local
 - **نام انگلیسی:** AtbinYar
 - **سازنده:** آتبین امیدی (Atbin Omidi)
 - **وب‌سایت:** https://atbinyar.ir/
-- **مخزن پروژه و نسخه‌ها:** https://github.com/AtbeenLabs/MathLab
+- **مخزن کد برنامه و نسخه‌ها:** https://github.com/AtbeenLabs/MathLab-App
+- **مخزن کد وب‌سایت:** https://github.com/AtbeenLabs/MathLab
