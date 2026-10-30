@@ -88,7 +88,7 @@
       ],
       "isAccessibleForFree": true,
       "inLanguage": "fa-IR",
-      "softwareVersion": "1.14.0",
+      "softwareVersion": "1.15.0",
       "downloadUrl": "https://github.com/AtbeenLabs/MathLab-App/releases/latest",
       "author": {
         "@id": "https://atbinyar.ir/#creator"
@@ -1200,6 +1200,24 @@ html{max-width:100%;overflow-x:clip;}
           : 'آخرین نسخه: ' + release.tag_name;
       }
       document.documentElement.dataset.releaseVersion = release.tag_name;
+
+      // Keep the SoftwareApplication structured data synchronized as new
+      // app releases are published, without requiring a website edit.
+      const structuredDataNode = document.querySelector('script[type="application/ld+json"]');
+      if (structuredDataNode) {
+        try {
+          const structuredData = JSON.parse(structuredDataNode.textContent);
+          const graph = Array.isArray(structuredData['@graph']) ? structuredData['@graph'] : [];
+          const application = graph.find(item => item['@id'] === 'https://atbinyar.ir/#application');
+          if (application) {
+            application.softwareVersion = release.tag_name.replace(/^v/, '');
+            application.downloadUrl = releasePage;
+            structuredDataNode.textContent = JSON.stringify(structuredData);
+          }
+        } catch (metadataError) {
+          console.warn('[AtbinYar downloads] Could not update structured data:', metadataError);
+        }
+      }
     } catch (error) {
       if (versionLabel) {
         versionLabel.textContent = 'دریافت نسخه ناموفق بود؛ فهرست انتشارها را باز کن';
