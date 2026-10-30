@@ -27,7 +27,7 @@
 
 ## دانلود
 
-- [انتشارهای آتبین‌یار در GitHub](https://github.com/AtbeenLabs/MathLab/releases/latest)
+- [انتشارهای آتبین‌یار در GitHub](https://github.com/AtbeenLabs/MathLab-App/releases/latest)
 
 ## Sitemap و ربات‌ها
 
