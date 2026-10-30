@@ -1136,10 +1136,10 @@ html{max-width:100%;overflow-x:clip;}
   const releaseApi = 'https://api.github.com/repos/AtbeenLabs/MathLab-App/releases/latest';
   const releasePage = 'https://github.com/AtbeenLabs/MathLab-App/releases/latest';
   const downloadMatchers = {
-    dlWin: asset => /^AtbinYar\.Setup\.\d+\.\d+\.\d+\.exe$/i.test(asset.name),
-    dlAnd: asset => asset.name === 'app-release.apk',
-    dlDeb: asset => /^atbinyar_\d+\.\d+\.\d+_amd64\.deb$/i.test(asset.name),
-    dlAppImage: asset => /^AtbinYar-\d+\.\d+\.\d+\.AppImage$/i.test(asset.name)
+    dlWin: asset => /^AtbinYar_v\d+\.\d+\.\d+\.exe$/i.test(asset.name),
+    dlAnd: asset => /^AtbinYar_v\d+\.\d+\.\d+\.apk$/i.test(asset.name),
+    dlDeb: asset => /^AtbinYar_v\d+\.\d+\.\d+\.deb$/i.test(asset.name),
+    dlAppImage: asset => /^AtbinYar_v\d+\.\d+\.\d+\.AppImage$/i.test(asset.name)
   };
 
   const downloadLinks = Object.keys(downloadMatchers)
